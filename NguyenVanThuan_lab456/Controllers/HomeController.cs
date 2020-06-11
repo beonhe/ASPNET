@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using NguyenVanThuan_lab456.ViewModels;
+
 namespace NguyenVanThuan_lab456.Controllers
 {
     public class HomeController : Controller
@@ -17,7 +19,12 @@ namespace NguyenVanThuan_lab456.Controllers
         public ActionResult Index()
         {
             var upcommingCourses = _dbContext.Courses.Include(c => c.Lecturer).Include(c => c.Category).Where(c => c.DateTime > DateTime.Now);
-            return View(upcommingCourses);
+            var viewModel = new CoursesViewModel
+            {
+                UpcommingCourses = upcommingCourses,
+                ShowAction = User.Identity.IsAuthenticated
+            };
+            return View(viewModel);
         }
 
         public ActionResult About()
@@ -33,5 +40,6 @@ namespace NguyenVanThuan_lab456.Controllers
 
             return View();
         }
+
     }
 }
