@@ -17,13 +17,14 @@
                     <span class="lecturer">
                         @course.Lecturer.Name
                     </span>
+                    <p></p>
                     <span class="category">
                         @course.Category.Name
                     </span>
                 </div>
-
+                <p></p>
                 <div class="action">
-                    <a href="@Url.Action("Edit","Courses", new { id = course.ID })">Edit</a> |
+                    <a href="@Url.Action("Edit","Course", new { id = course.ID })">Edit</a> |
                     <a  href="#" data-course-id="@course.ID" class="js-cancel-course">Cancel</a>
                 </div>
             </li>
@@ -34,7 +35,7 @@
 
 @section scripts{
     <script>
-        $(function () {
+        $(document).ready.(function () {
             $('.js-cancel-course').click(function (e) {
                 e.preventDefault();
                 var link = $(e.target);
@@ -44,7 +45,7 @@
                         method: "DELETE"
                     }).done(function () {
                         link.parents("li").fadeOut(function () {
-                            this.remove();
+                            $(this).remove();
                         });
                     }).fail(function () {
                         alert("Something failed");

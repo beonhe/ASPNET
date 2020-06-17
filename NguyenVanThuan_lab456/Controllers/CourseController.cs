@@ -128,7 +128,7 @@ namespace NguyenVanThuan_lab456.Controllers
             course.DateTime = viewModel.GetDateTime();
             course.CategoryId = viewModel.Category;
             _dbContext.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Mine");
         }
     }
 }
