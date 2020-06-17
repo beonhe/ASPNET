@@ -28,6 +28,7 @@ textarea {
 }
 .course {
     list-style:none;
+    padding-top:10px;
 }
 .course > li {
     position: relative;

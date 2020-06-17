@@ -18,14 +18,14 @@ namespace NguyenVanThuan_lab456.Controllers
             _dbContext = new ApplicationDbContext();
         }
         [HttpPost]
-        public IHttpActionResult Attend(AttendanceDto attendanceDto)
+        public IHttpActionResult Attend([FromBody] int courseId)
         {
             var userId = User.Identity.GetUserId();
-            if (_dbContext.Attendances.Any(a => a.AteendeeId == userId && a.CourseId == attendanceDto.CourseId))
+            if (_dbContext.Attendances.Any(a => a.AteendeeId == userId && a.CourseId == courseId))
                 return BadRequest("The Attendance already exists!");
             var attendance = new Attendance
             {
-                CourseId = attendanceDto.CourseId,
+                CourseId = courseId,
                 AteendeeId = userId
             };
             _dbContext.Attendances.Add(attendance);
