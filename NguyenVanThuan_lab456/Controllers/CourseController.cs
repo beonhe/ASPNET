@@ -130,5 +130,6 @@ namespace NguyenVanThuan_lab456.Controllers
             _dbContext.SaveChanges();
             return RedirectToAction("Mine");
         }
+
     }
 }

@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<NguyenVanThuan_lab456.Models.Course>
-
+@{ 
+    ViewBag.Title = "Mine";
+}
+<h2>Mine</h2>
 <div class="row">
     <ul class="course">
         @foreach (var course in Model)
@@ -25,7 +28,16 @@
                 <p></p>
                 <div class="action">
                     <a href="@Url.Action("Edit","Course", new { id = course.ID })">Edit</a> |
-                    <a  href="#" data-course-id="@course.ID" class="js-cancel-course">Cancel</a>
+                    @if (course.IsCanceled == false)
+                    {
+                        <a href="#" data-course-id="@course.ID" class="js-cancel-course">Cancel</a>
+                    }
+                    else
+                    {
+                        <a href="#" data-course-id="@course.ID" class="js-uncancel-course">UnCancel</a>
+                    }
+
+                   
                 </div>
             </li>
         }
@@ -35,13 +47,31 @@
 
 @section scripts{
     <script>
-        $(document).ready.(function () {
+        $(function () {
             $('.js-cancel-course').click(function (e) {
                 e.preventDefault();
                 var link = $(e.target);
                 bootbox.confirm("Are you sure to cancel?", function () {
                     $.ajax({
-                        url: "/api/courses/" + link.attr("data-course-id"),
+                        url: "/api/course/" + link.attr("data-course-id"),
+                        method: "DELETE"
+                    }).done(function () {
+                        link.parents("li").fadeOut(function () {
+                            $(this).remove();
+                        });
+                    }).fail(function () {
+                        alert("Something failed");
+                    });
+                });
+            });
+        })
+        $(function () {
+            $('.js-uncancel-course').click(function (e) {
+                e.preventDefault();
+                var link = $(e.target);
+                bootbox.confirm("Are you sure to Uncancel?", function () {
+                    $.ajax({
+                        url: "/api/course/" + link.attr("data-course-id"),
                         method: "DELETE"
                     }).done(function () {
                         link.parents("li").fadeOut(function () {

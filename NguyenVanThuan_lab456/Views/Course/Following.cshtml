@@ -1,11 +1,12 @@
 ﻿@using Microsoft.AspNet.Identity;
 @model NguyenVanThuan_lab456.ViewModels.FollowingViewModel
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Following";
 }
 
 <div class="row">
     <ul class="course">
+
         @foreach (var follow in Model.Followings)
         {
             <li>

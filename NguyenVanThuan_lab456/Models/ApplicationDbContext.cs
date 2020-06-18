@@ -36,9 +36,9 @@ namespace NguyenVanThuan_lab456.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ApplicationUser>()
-            .HasMany(u => u.Followees)
-            .WithRequired(f => f.Follower)
-            .WillCascadeOnDelete(false);
+                .HasMany(u => u.Followees)
+                .WithRequired(f => f.Follower)
+                .WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);
         }
