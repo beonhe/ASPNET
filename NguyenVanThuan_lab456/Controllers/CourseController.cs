@@ -67,7 +67,7 @@ namespace NguyenVanThuan_lab456.Controllers
             };
             return View(viewModel);
         }
-        public ActionResult Following()
+        public ActionResult FollowingMe()
         {
             var userId = User.Identity.GetUserId();
             var followings = _dbContext.Followings
@@ -83,7 +83,7 @@ namespace NguyenVanThuan_lab456.Controllers
 
             return View(viewModel);
         }
-        public ActionResult FollowingMe()
+        public ActionResult ImFollowing()
         {
             var userId = User.Identity.GetUserId();
             var followings = _dbContext.Followings
