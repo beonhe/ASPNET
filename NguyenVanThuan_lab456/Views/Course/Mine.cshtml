@@ -72,7 +72,7 @@
                 bootbox.confirm("Are you sure to Uncancel?", function () {
                     $.ajax({
                         url: "/api/course/" + link.attr("data-course-id"),
-                        method: "DELETE"
+                        method: "POST"
                     }).done(function () {
                         link.parents("li").fadeOut(function () {
                             $(this).remove();

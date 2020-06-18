@@ -28,7 +28,7 @@ namespace NguyenVanThuan_lab456.Controllers.Api
             _dbcontext.SaveChanges();
             return Ok();
         }
-
+        [HttpPost]
         public IHttpActionResult UnCancel(int id)
         {
             var userId = User.Identity.GetUserId();
