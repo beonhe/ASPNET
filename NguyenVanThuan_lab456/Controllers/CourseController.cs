@@ -83,6 +83,22 @@ namespace NguyenVanThuan_lab456.Controllers
 
             return View(viewModel);
         }
+        public ActionResult FollowingMe()
+        {
+            var userId = User.Identity.GetUserId();
+            var followings = _dbContext.Followings
+                .Where(a => a.FollowerId == userId)
+                .Select(a => a.Followee)
+                .ToList();
+
+            var viewModel = new FollowingViewModel
+            {
+                Followings = followings,
+                ShowAction = User.Identity.IsAuthenticated
+            };
+
+            return View(viewModel);
+        }
         [Authorize]
         public ActionResult Mine()
         {
